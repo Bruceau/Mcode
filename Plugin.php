@@ -23,16 +23,16 @@ class Mcode_Plugin implements Typecho_Plugin_Interface
       
      /* 插件配置方法 */
      public static function config(Typecho_Widget_Helper_Form $form) {
-          // $mcode_string = new Typecho_Widget_Helper_Form_Element_Text('mcode_string', NULL, '0123456789', _t('验证码字符集'));
-          // $types = array(
-          //    'number' => '仅数字',
-          //    'sen' => '仅英文(小写)',
-          //    'ben' => '仅英文(大写)',
-          //    'all' => '数字+英文(大小写)',
-          // );
-          // $mcode_type = new Typecho_Widget_Helper_Form_Element_Select('mcode_type', $types, 'number', _t('验证类型'));
-          // $form->addInput($mcode_string);
-          // $form->addInput($mcode_type);
+          $mcode_string = new Typecho_Widget_Helper_Form_Element_Text('mcode_string', NULL, '0123456789', _t('验证码字符集'));
+          $types = array(
+             'number' => '仅数字',
+             'sen' => '仅英文(小写)',
+             'ben' => '仅英文(大写)',
+             'all' => '数字+英文(大小写)',
+          );
+          $mcode_type = new Typecho_Widget_Helper_Form_Element_Select('mcode_type', $types, 'number', _t('验证类型'));
+          $form->addInput($mcode_string);
+          $form->addInput($mcode_type);
      }
       
      /* 个人用户的配置方法 */
