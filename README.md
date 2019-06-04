@@ -23,7 +23,7 @@
         </p>
     </form>
 
-增加 <?php Typecho_Plugin::factory('mc')->render(); ?>
+增加 '<?php Typecho_Plugin::factory('mc')->render(); ?>'
 
 	<form action="<?php $options->loginAction(); ?>" method="post" name="login" role="form">
         <p>
@@ -34,8 +34,10 @@
         	<label for="password" class="sr-only"><?php _e('密码'); ?></label>
         	<input type="password" id="password" name="password" class="text-l w-100" placeholder="<?php _e('密码'); ?>" />
         </p>
+
         //添加到这里
         <?php Typecho_Plugin::factory('mc')->render(); ?>
+
         <p class="submit">
             <button type="submit" class="btn btn-l w-100 primary"><?php _e('登录'); ?></button>
         	<input type="hidden" name="referer" value="<?php echo htmlspecialchars($request->get('referer')); ?>" />
@@ -51,11 +53,11 @@
 
 在
 
-        /** 如果已经登录 */
-        if ($this->user->hasLogin()) {
-            /** 直接返回 */
-            $this->response->redirect($this->options->index);
-        }
+    /** 如果已经登录 */
+    if ($this->user->hasLogin()) {
+        /** 直接返回 */
+        $this->response->redirect($this->options->index);
+    }
 
 下面添加
 
