@@ -9,7 +9,7 @@
  */
 
 error_reporting(-1);
-ini_set('display_errors',1);
+ini_set('display_errors',0);
 @session_start();
 if(empty($_REQUEST['w'])){
     $_REQUEST['w'] = 50;
@@ -17,19 +17,19 @@ if(empty($_REQUEST['w'])){
 if(empty($_REQUEST['h'])){
     $_REQUEST['h'] = 20;
 }
+$zs=$_SESSION['captcha_int'];
 $y_w=intval($_REQUEST['w']);
 $y_h=intval($_REQUEST['h']);
 if($y_w==0 || $y_w>200)$y_w=50;
 if($y_h==0 || $y_h>100)$y_h=20;
-$y_w_=intval($y_w/5);
+$y_w_=intval($y_w/$zs);
 $y_h_=intval($y_h/1.3);
-$y_f_=intval($y_h/1.8);
+$y_f_=intval($y_h/2);
 $point=$y_w/10;
 
 function verify_rand($length){
     $result = "";
     $string = $_SESSION['captcha_string'];
-//    $string = "0123456789abcdefghijklnmopqrstuvwxyz";
     for ($i = 0 ; $i < $length ; $i++){
         if($i==0) $result .=$string[mt_rand(0 , strlen($string) - 1)];
         else $result .=$string[mt_rand(0 , strlen($string) - 1)];
@@ -37,7 +37,6 @@ function verify_rand($length){
     return $result;
 }
 
-$zs=4;
 $randcode=verify_rand($zs);
 $_SESSION['captcha']=strtolower($randcode);
 header ("content-type: image/png");

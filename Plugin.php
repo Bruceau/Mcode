@@ -23,6 +23,7 @@ class Mcode_Plugin implements Typecho_Plugin_Interface
       
      /* 插件配置方法 */
      public static function config(Typecho_Widget_Helper_Form $form) {
+          $mcode_int = new Typecho_Widget_Helper_Form_Element_Text('mcode_int', NULL, '4', _t('验证码字符数'), _t('为基准值，范围0~6，默认4'));
           $mcode_string = new Typecho_Widget_Helper_Form_Element_Text('mcode_string', NULL, '0123456789', _t('验证码字符集'));
 //          $types = array(
 //             'number' => '仅数字',
@@ -31,6 +32,7 @@ class Mcode_Plugin implements Typecho_Plugin_Interface
 //             'all' => '数字+英文(大小写)',
 //          );
 //          $mcode_type = new Typecho_Widget_Helper_Form_Element_Select('mcode_type', $types, 'number', _t('验证类型'));
+          $form->addInput($mcode_int);
           $form->addInput($mcode_string);
 //          $form->addInput($mcode_type);
      }
@@ -44,6 +46,7 @@ class Mcode_Plugin implements Typecho_Plugin_Interface
      public static function render() {
           session_start();
           $_SESSION['captcha_string'] = Typecho_Widget::widget('Widget_Options')->plugin('Mcode')->mcode_string;
+          $_SESSION['captcha_int'] = Typecho_Widget::widget('Widget_Options')->plugin('Mcode')->mcode_int;
           echo '<p style="text-align: left;">';
           echo '<label for="captcha" class="sr-only">验证码</label>';
           echo '<input type="text" id="captcha" name="captcha" placeholder="验证码" class="text-l w-100" style="width: 65%;" onclick="getKey();" autofocus />';
