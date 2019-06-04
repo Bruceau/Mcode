@@ -23,7 +23,7 @@
         </p>
     </form>
 
-增加 '<?php Typecho_Plugin::factory('mc')->render(); ?>'
+增加 `<?php Typecho_Plugin::factory('mc')->render(); ?>`
 
 	<form action="<?php $options->loginAction(); ?>" method="post" name="login" role="form">
         <p>
