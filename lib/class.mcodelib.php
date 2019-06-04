@@ -9,7 +9,7 @@
  */
 
 error_reporting(-1);
-ini_set('display_errors',0);
+ini_set('display_errors',1);
 @session_start();
 if(empty($_REQUEST['w'])){
     $_REQUEST['w'] = 50;
@@ -25,16 +25,18 @@ $y_w_=intval($y_w/5);
 $y_h_=intval($y_h/1.3);
 $y_f_=intval($y_h/1.8);
 $point=$y_w/10;
-//$y_f_=18;
+
 function verify_rand($length){
     $result = "";
-    $string = "0123456789";
+    $string = $_SESSION['captcha_string'];
+//    $string = "0123456789abcdefghijklnmopqrstuvwxyz";
     for ($i = 0 ; $i < $length ; $i++){
         if($i==0) $result .=$string[mt_rand(0 , strlen($string) - 1)];
         else $result .=$string[mt_rand(0 , strlen($string) - 1)];
     }
     return $result;
 }
+
 $zs=4;
 $randcode=verify_rand($zs);
 $_SESSION['captcha']=strtolower($randcode);
