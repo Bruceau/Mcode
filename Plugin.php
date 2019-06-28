@@ -1,10 +1,10 @@
 <?php
 /**
- * M-Code(明哥验证码) 2.0 for Typecho </br> Update time: <code style="padding: 2px 4px; font-size: 90%; color: #c7254e; background-color: #f9f2f4; border-radius: 4px;">2019-06-29</code>
+ * M-Code(明哥验证码) 2.1 for Typecho </br> Update time: <code style="padding: 2px 4px; font-size: 90%; color: #c7254e; background-color: #f9f2f4; border-radius: 4px;">2019-06-29</code>
  *
  * @package Mcode
  * @author Mingo
- * @version 2.0.0
+ * @version 2.1.0
  * @link https://0x50j.com/
  */
 
@@ -51,12 +51,11 @@ class Mcode_Plugin implements Typecho_Plugin_Interface
           if (Typecho_Widget::widget('Widget_Options')->plugin('Mcode')->mcode_access == 'enable') {
             $client_ip=$_SERVER['REMOTE_ADDR'];
             $white_ip = explode(',',Typecho_Widget::widget('Widget_Options')->plugin('Mcode')->mcode_whitelist);
+            $acc_result = 0;
             for ($index=0; $index<count($white_ip); $index++) {
                 if ($client_ip == $white_ip[$index]) {
                   $acc_result = 1;
                   break;
-                } else {
-                  $acc_result = 0;
                 }
             }
 
