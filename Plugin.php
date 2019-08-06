@@ -49,6 +49,11 @@ class Mcode_Plugin implements Typecho_Plugin_Interface
      public static function render() {
           session_start();
           if (Typecho_Widget::widget('Widget_Options')->plugin('Mcode')->mcode_access == 'enable') {
+            //绕过 CDN 代理IP获取客户真实IP地址
+            if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+              $list = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
+              $_SERVER['REMOTE_ADDR'] = $list[0];
+            }
             $client_ip=$_SERVER['REMOTE_ADDR'];
             $white_ip = explode(',',Typecho_Widget::widget('Widget_Options')->plugin('Mcode')->mcode_whitelist);
             $acc_result = 0;
