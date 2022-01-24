@@ -67,3 +67,8 @@
         $this->widget('Widget_Notice')->set($response[$response['statusMsg']]);
         $this->response->goBack();
     }
+## 另外补充
+如需在注册页面添加，同理。
+路径:
+/admin/register.php
+/var/Widget/Register.php
